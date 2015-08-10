@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   get 'static_pages/about'
   get 'static_pages/help'
   # メイラー
-  get 'inquiry' => 'inquiry#index'
-  post 'inquiry/confirm' => 'inquiry#confirm'
-  post 'inquiry/thanks' => 'inquiry#thanks'  
+  get 'inquiry' => 'inquiry#index'              # 入力画面
+  post 'inquiry/confirm' => 'inquiry#confirm'   # 確認画面
+  post 'inquiry/thanks' => 'inquiry#thanks'     # 送信完了画面
 
   devise_for :users
   resources :posts
