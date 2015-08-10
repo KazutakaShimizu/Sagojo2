@@ -15,8 +15,9 @@
 			<%= link_to "サインイン",  new_user_session_path  %>
 		<% else %>
 			<%= link_to "サインアウト", destroy_user_session_path,:method => :delete  %>
-		<% if can? :create, User %>
-			<%= link_to "新規投稿",  new_post_path  %>	
+		<% if user_signed_in? %>
+			<%= link_to "新規投稿",  new_post_path  %>
+			<%= link_to "管理画面",  "http://localhost:3000/admin/"  %>
 		<% end %>
 		<% end %>
 
