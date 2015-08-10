@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Sagojo</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<%= link_to "企画一覧",posts_path %>
+		<%= link_to "アバウト",static_pages_about_path %>
+		<%= link_to "ヘルプ",static_pages_help_path  %>
+		<% if !user_signed_in? %>
+			<%= link_to "サインアップ", new_user_registration_path  %>
+			<%= link_to "サインイン",  new_user_session_path  %>
+		<% else %>
+			<%= link_to "サインアウト", destroy_user_session_path,:method => :delete  %>
+		<% if can? :create, User %>
+			<%= link_to "新規投稿",  new_post_path  %>	
+		<% end %>
+		<% end %>
+
+
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>
+	<%= yield %>
+
+	</body>
+</html>
