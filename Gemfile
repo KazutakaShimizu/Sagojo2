@@ -17,6 +17,8 @@ gem 'devise'
 gem 'cancancan'
 gem 'rails_admin'
 gem 'ckeditor'
+gem 'carrierwave'
+gem 'mini_magick'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
