@@ -1,0 +1,23 @@
+<aside class="sidebar">  
+  <section>
+    <span class="label">ユーザー</span>
+    <h3 class="user-info"><%= @user.name %></h3>
+  </section>
+  
+  <section>
+    <span class="label">メールアドレス</span>
+    <h3 class="user-info"><%= @user.email %></h3>
+  </section>
+
+
+  <% if current_user.id===@user.id %>
+    <section>
+      <small><%= link_to 'プロフィールを編集', edit_user_path(@user) %></small>
+    </section>
+  <% end %>
+
+
+  <br>
+</aside>
+
+
