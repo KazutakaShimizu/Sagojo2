@@ -28,9 +28,7 @@ class UsersController < ApplicationController
     end
 
     def correct_user
-      user = User.find(params[:id])
-     if !current_user.id==user.id
-        redirect_to root_path, alert: '許可されていないページです'
-    end
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless @user == current_user
     end
 end
