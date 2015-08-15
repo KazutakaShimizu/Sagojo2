@@ -1,5 +1,9 @@
 <aside class="sidebar">  
   <section>
+   <%= image_tag(@user.image,:size => "200x200") %>
+  </section>
+
+  <section>
     <span class="label">ユーザー</span>
     <h3 class="user-info"><%= @user.name %></h3>
   </section>
