@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post 'inquiry/confirm' => 'inquiry#confirm'   # 確認画面
   post 'inquiry/thanks' => 'inquiry#thanks'     # 送信完了画面
   #ユーザー
-  devise_for :users
+  devise_for :users,controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users,only:[:show,:edit,:update]
   #投稿
   resources :posts
