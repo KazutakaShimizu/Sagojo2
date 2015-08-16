@@ -40,6 +40,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'better_errors'     # 開発中のエラー画面をリッチにする
+  gem 'binding_of_caller' # 開発中のエラー画面にさらに変数の値を表示する
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

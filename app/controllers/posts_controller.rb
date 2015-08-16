@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!,only:[:new,:create,:edit,:upadate,:destroy]
+  before_action :admin_user,only:[:new,:create,:edit,:upadate,:destroy]
 
   # GET /posts
   # GET /posts.json
@@ -73,5 +73,11 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:name,:title, :content)
+    end
+
+    def admin_user
+      if !current_user.roles.name == "admin"
+        redirect_to(root_path) 
+      end
     end
 end
