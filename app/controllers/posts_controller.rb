@@ -76,8 +76,8 @@ class PostsController < ApplicationController
     end
 
     def admin_user
-      if !current_user.roles.name == "admin"
-        redirect_to(root_path) 
-      end
+        unless current_user.role == "admin"
+          redirect_to(root_path) 
+        end
     end
 end

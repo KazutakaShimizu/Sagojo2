@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount Ckeditor::Engine => '/ckeditor'
   # 静的ページ
   get 'static_pages/about'
   get 'static_pages/help'

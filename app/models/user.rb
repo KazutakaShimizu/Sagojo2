@@ -3,12 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-  has_and_belongs_to_many :roles
   mount_uploader :image, ImageUploader
 
-  def has_role?(name)
-    self.roles.where(name: name).length > 0
-  end
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
