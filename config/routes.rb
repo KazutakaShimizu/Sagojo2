@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  #ユーザー
+  devise_for :users,controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  resources :users,only:[:show,:edit,:update]
+  #rails admin
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   mount Ckeditor::Engine => '/ckeditor'
   # 静的ページ
@@ -8,9 +12,6 @@ Rails.application.routes.draw do
   get 'inquiry' => 'inquiry#index'              # 入力画面
   post 'inquiry/confirm' => 'inquiry#confirm'   # 確認画面
   post 'inquiry/thanks' => 'inquiry#thanks'     # 送信完了画面
-  #ユーザー
-  devise_for :users,controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  resources :users,only:[:show,:edit,:update]
   #投稿
   resources :posts
   root "posts#index"
