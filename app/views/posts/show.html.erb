@@ -1,10 +1,21 @@
+<strong>募集状況:</strong>
+	<% if @post.active=="true" %>
+		<p>募集中</p>
+	<% else %>
+		<p>募集終了</p>
+	<% end %>	
+
 <p>
-	<strong>Title:</strong>
+	<strong>タイトル:</strong>
 	<%= @post.title %>
 </p>
 
+<p>
+	<strong>国:</strong>
+	<%= @post.country %>
+</p>
 
-	<strong>Content:</strong>
+	<strong>コンテンツ:</strong>
 	<%== @post.content %>
 
 <p>
