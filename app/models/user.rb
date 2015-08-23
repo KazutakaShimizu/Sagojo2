@@ -13,10 +13,10 @@ class User < ActiveRecord::Base
         uid: auth.uid,
         provider: auth.provider,
         name: auth.info.name,
-        email:    User.dummy_email(auth),
+        email:    auth.info.email,
         password: Devise.friendly_token[4, 30])
     end
-    user
+  user
   end
 
  private
