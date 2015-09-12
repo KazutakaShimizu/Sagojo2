@@ -1,29 +1,48 @@
-<strong>募集状況:</strong>
-	<% if @post.active=="true" %>
-		<p>募集中</p>
-	<% else %>
-		<p>募集終了</p>
-	<% end %>	
+<% if @post.category=="job" %>
+	<strong>募集状況:</strong>
+		<% if @post.active=="true" %>
+			<p>募集中</p>
+		<% else %>
+			<p>募集終了</p>
+		<% end %>	
 
-<p>
-	<strong>タイトル:</strong>
-	<%= @post.title %>
-</p>
+	<p>
+		<strong>タイトル:</strong>
+		<%= @post.title %>
+	</p>
 
-<p>
-	<strong>国:</strong>
-	<%= @post.country %>
-</p>
+	<p>
+		<strong>国:</strong>
+		<%= @post.country %>
+	</p>
 
-	<strong>コンテンツ:</strong>
-	<%== @post.content %>
+		<strong>コンテンツ:</strong>
+		<%== @post.content %>
 
-<p>
-	<strong>この記事のライター:</strong>
-	<%= @post.name %>
-</p>
+	<p>
+		<strong>この記事のライター:</strong>
+		<%= @post.name %>
+	</p>
+	<%= link_to '問い合わせ', inquiry_path %>
+<% else %>
+	<p>
+		<strong>タイトル:</strong>
+		<%= @post.title %>
+	</p>
 
-<%= link_to '問い合わせ', inquiry_path %>
+	<p>
+		<strong>国:</strong>
+		<%= @post.country %>
+	</p>
+
+		<strong>コンテンツ:</strong>
+		<%== @post.content %>
+
+	<p>
+		<strong>この記事のライター:</strong>
+		<%= @post.name %>
+	</p>
+<% end %>
 <% if user_signed_in? %>
 	<% if current_user.role=="admin" %>
 		<br>

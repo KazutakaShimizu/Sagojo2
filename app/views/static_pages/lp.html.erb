@@ -1,0 +1,11 @@
+事前登録
+<%= form_for @user do |f| %>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+多分、userの中に作った方が良い

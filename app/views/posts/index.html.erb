@@ -13,7 +13,7 @@
     <% @posts.each do |post| %>
       <% if post.active=="true" %>
         <tr>
-          <td><%= link_to post.title,post %></td>
+          <td><%= link_to post.title,post %> |<%= post.category %></td>
           <% if user_signed_in? %>
             <% if current_user.role=="admin" %>
               <td><%= link_to 'Edit', edit_post_path(post) %></td>
@@ -39,7 +39,7 @@
     <% @posts.each do |post| %>
       <% if post.active=="false" %>
         <tr>
-          <td><%= link_to post.title,post %></td>
+          <td><%= link_to post.title,post %> |<%= post.category %></td>
           <% if user_signed_in? %>
             <% if current_user.role=="admin" %>
               <td><%= link_to 'Edit', edit_post_path(post) %></td>

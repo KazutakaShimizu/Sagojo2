@@ -27,6 +27,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :category %><br>
+    <%= f.select :category, [["求人", "job"], ["コラム", "column"]] %>
+  </div>
+
+  <div class="field">
     <%= f.label :country %><br>
     <%= f.text_field :country %>
   </div>

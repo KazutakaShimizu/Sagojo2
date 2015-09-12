@@ -1,0 +1,7 @@
+<% @users.each do |user| %>
+  <tr>
+     <td><%= link_to user.name %></td>
+     <td><%= link_to 'Edit', edit_user_registration_path(user) %></td>
+ 	 <td><%= link_to 'Destroy',edit_user_registration_path(user), method: :delete,data: { confirm: 'Are you sure?' } %></td>
+ </tr>
+<% end -%>
