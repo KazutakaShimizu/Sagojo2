@@ -7,23 +7,65 @@
 	  <%= csrf_meta_tags %>
 	</head>
 	<body>
-		<%= link_to "企画一覧",posts_path %>
-		<%= link_to "アバウト",static_pages_about_path %>
-		<%= link_to "ヘルプ",static_pages_help_path  %>
-		<% if !user_signed_in? %>
-			<%= link_to "サインアップ", new_user_registration_path  %>
-			<%= link_to "サインイン",  new_user_session_path  %>
-		<% else %>
-			<%= link_to "マイページ",  current_user %>
-			<%= link_to "サインアウト", destroy_user_session_path,:method => :delete  %>
-		<% if current_user.role == "admin" %>
-			<%= link_to "新規投稿",  new_post_path  %>
-			<%= link_to "管理画面",  "http://localhost:3000/admin/"  %>
-		<% end %>
-		<% end %>
+		<div class="header-wrapper">
+			<header>
+				<div class="header-inner">
+					<div class="logo">
+						<%= link_to root_path do %>
+							<%= image_tag 'logo.png' %>
+						<% end %>
+					</div>
+					<div class="g-menu">
+						<div class="menu-left">	
+							<ul>
+								<li><%= link_to "シゴト",posts_path %></li>
+								<li><%= link_to "コラム",posts_path %></li>
+								<li><%= link_to "アバウト",static_pages_about_path %></li>
+								<li><%= link_to "ヘルプ",static_pages_help_path  %></li>
+							</ul>
+						</div>
+						<div class="menu-right">
+							<ul>
+								<% if !user_signed_in? %>
+									<li><%= link_to "サインアップ", new_user_registration_path  %></li>
+									<li><%= link_to "サインイン",  new_user_session_path  %></li>
+								<% else %>
+									<li><%= link_to "マイページ",  current_user %></li>
+									<li><%= link_to "サインアウト", destroy_user_session_path,:method => :delete  %></li>
+								<% if current_user.role == "admin" %>
+									<li><%= link_to "新規投稿",  new_post_path  %></li>
+									<li><%= link_to "管理画面",  "http://localhost:3000/admin/"  %></li>
+								<% end %>
+								<% end %>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</header>
+		</div>
 		<p class="notice"><%= notice %></p>
 		<p class="alert"><%= alert %></p>
 	<%= yield %>
-
+	
+	<footer>
+		<div class="footer-inner">
+			<div class="footer-logo">
+			<p><%= image_tag 'logo.png' %></p>
+			</div>
+			<div class="footer-left">
+				<p>about sagojo</p>
+				<p>企業の方へ</p>
+				<p>個人情報について</p>
+				<p>サイトポリシー</p>
+			</div>
+			<div class="footer-right">
+				<p>FAQ</p>
+				<p>クッキーポリシー</p>
+				<p>ヘルプ</p>
+				<p>お問い合わせ</p>
+			</div>
+			<p class="copy-right">Copyright © SAGOJO All Rights Reserved.</p>
+		</div>
+	</footer>
 	</body>
 </html>

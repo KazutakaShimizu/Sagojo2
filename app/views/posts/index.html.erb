@@ -1,67 +1,98 @@
-<h1>TOP</h1>
-<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
+<!-- メインビジュアル -->
+<div class="main-visual">
+  <%= image_tag("main.jpg") %>
+  <div class="main-copy">
+    <h1>あなたの旅をシゴトにしよう</h1>
+    <h3 class="sub-copy">文章・写真・動画などのコンテンツを作りながら旅したい、<br>すごい旅人募集します</h3>
+  </div>
+</div>
 
-  <tbody>
-  <h3>募集中の旅</h3>
-    <% @posts.each do |post| %>
-      <% if post.active=="true" %>
-        <tr>
-          <td><%= link_to post.title,post %> |<%= post.category %></td>
-          <% if user_signed_in? %>
-            <% if current_user.role=="admin" %>
-              <td><%= link_to 'Edit', edit_post_path(post) %></td>
-              <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
+<!-- 求人、コラム一覧 -->
+<div class="main-wrapper">
+  <div class="main">
+    <div class="active-jobs">
+      <div class="aj-copy">
+        <h2><%= image_tag("top.png") %>募集中のシゴト</h2>
+      </div>
+      <% @posts.each do |post| %>
+        <% if post.active=="true" %>
+          <% if post.category=="job" %>
+            <div class="active-job">
+              <%= image_tag(post.image) %>
+              <div class="title">
+                <div><p><%= post.title%></p></div>
+              </div>
+              <div class="data">
+                <p><%= image_tag("company.png") %>株式会社ジェーティービー</p>
+                <p><%= image_tag("job.png") %>編集、撮影</p>
+                <p><%= image_tag("place.png") %><%= post.country %></p>
+                <p><%= image_tag("reword.png") %>30,000</p>
+              </div>
+              <div class="content">テキストテキストテキストテキストテキストテキストテキストテキ
+              ストテキストテキストテキストテキスト</div>
+              <% if user_signed_in? %>
+                <% if current_user.role=="admin" %>
+                  <td><%= link_to 'Edit', edit_post_path(post) %></td>
+                  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end %>
+              <% end %>
+            </div>
           <% end %>
-        </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
+    <div class="side-menu">
 
-  <tbody>
-  <h3>募集終了した旅</h3>
-    <% @posts.each do |post| %>
-      <% if post.active=="false" %>
-        <tr>
-          <td><%= link_to post.title,post %> |<%= post.category %></td>
-          <% if user_signed_in? %>
-            <% if current_user.role=="admin" %>
-              <td><%= link_to 'Edit', edit_post_path(post) %></td>
-              <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
+    <div class="columns">
+        <div class="column-copy">
+          <h2><%= image_tag("top.png") %>コラム</h2>
+        </div>
+        <% @posts.each do |post| %>
+          <% if post.category=="column" %>
+            <div class="column">
+              <%= image_tag(post.image) %>
+              <div class="column-content">
+                <div class="column-title"><%= post.title %></div>
+                <div class="column-company">株式会社ジェーティービー</div>
+              <% if user_signed_in? %>
+                <% if current_user.role=="admin" %>
+                  <td ><%= link_to 'Edit', edit_post_path(post) %></td>
+                  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end %>
+              <% end %>
+              </div>
+              
+            </div>
           <% end %>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+        <% end %>  
+    </div>
 
-<table>
-  <tbody>
-  <h3>活躍中の旅人</h3>
-  <tr>
-    <% @users.each do |user| %>
-    <li><%= link_to user.email,user_path(user.id) %></li>
-    <% end %>
-  </tr>
-  </tbody>
-</table>
-
-
-<br>
+    <div class="end-jobs">
+       <div class="ej-copy">
+          <h2><%= image_tag("top.png") %>成功記事</h2>
+        </div>
+        <% @posts.each do |post| %>
+          <% if post.active=="false" %>
+            <div class="end-job">
+              <%= image_tag(post.image) %>
+              <div class="column-content">
+                <div class="column-title"><%= post.title %></div>
+                <div class="column-company">株式会社ジェーティービー</div>
+                <% if user_signed_in? %>
+                <% if current_user.role=="admin" %>
+                  <td ><%= link_to 'Edit', edit_post_path(post) %></td>
+                  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end %>
+              <% end %>
+              </div>
+              
+            </div>
+          <% end %>
+        <% end %>  
+      
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
