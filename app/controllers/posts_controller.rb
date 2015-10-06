@@ -10,6 +10,15 @@ class PostsController < ApplicationController
   
   end
 
+  def jobs
+    @jobs=Post.all
+  end
+
+  def columns
+    @columns=Post.all
+    
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show

@@ -1,0 +1,43 @@
+<div class="main-wrapper">
+  <div class="main">
+    <div class="post-columns">
+      <div class="aj-copy">
+        <h2><%= image_tag("top.png") %>募集中のシゴト</h2>
+      </div>
+      <% @columns.each do |column| %>
+        <% if column.active=="true" %>
+          <% if column.category=="job" %>
+            <div class="active-job">
+              <%= image_tag(column.image) %>
+              <div class="title">
+                <div><p><%= column.title%></p></div>
+              </div>
+              <div class="data">
+                <p><%= image_tag("company.png") %>株式会社ジェーティービー</p>
+                <p><%= image_tag("job.png") %>編集、撮影</p>
+                <p><%= image_tag("place.png") %><%= column.country %></p>
+                <p><%= image_tag("reword.png") %>30,000</p>
+              </div>
+              <div class="content">テキストテキストテキストテキストテキストテキストテキストテキ
+              ストテキストテキストテキストテキスト</div>
+              <% if user_signed_in? %>
+                <% if current_user.role=="admin" %>
+                  <td><%= link_to 'Edit', edit_post_path(post) %></td>
+                  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+
+
+
+<% @columns.each do |column| %>
+	<% if column.category=="column" %>
+		<%= column.title %>
+	<% end %>
+<% end %>
+<%= stylesheet_link_tag "inside/columns" %>

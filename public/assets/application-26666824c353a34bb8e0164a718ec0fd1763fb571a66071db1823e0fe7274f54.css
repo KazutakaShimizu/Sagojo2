@@ -10,13 +10,14 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_self
- *= require_directory .
+
+
  */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -176,3 +177,7 @@ footer{
 
 
 
+/* line 1, /Users/shimizukazutaka/rails_app/Sagojo2/app/assets/stylesheets/columns.scss */
+.aj-copy {
+  color: red;
+}
