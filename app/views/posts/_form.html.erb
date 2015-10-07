@@ -35,6 +35,10 @@
     <%= f.label :country %><br>
     <%= f.text_field :country %>
   </div>
+  <div class="field">
+    <%= f.label :place_list, "スキル・特技（カンマ区切り）" %><br>
+    <%= text_field_tag 'post[place_list]', @post.place_list.join(',') %>
+  </div>
 
   <div class="field">
     <%= f.label :image %><br>

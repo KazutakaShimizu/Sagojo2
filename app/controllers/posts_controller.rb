@@ -5,17 +5,33 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = if 
+              params[:tag].present? 
+                Post.tagged_with(params[:tag])
+              else
+                Post.all.includes(:tags)
+              end
+
     @users=User.all
   
   end
 
   def jobs
-    @jobs=Post.all
+    @jobs= if 
+              params[:tag].present? 
+                Post.tagged_with(params[:tag])
+              else
+                Post.all.includes(:tags)
+            end
   end
 
   def columns
-    @columns=Post.all
+    @columns= if 
+              params[:tag].present? 
+                Post.tagged_with(params[:tag])
+              else
+                Post.all.includes(:tags)
+              end
     
   end
 
@@ -81,7 +97,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name,:title,:category,:content,:country,:active,:image)
+      params.require(:post).permit(:name,:title,:category,:content,:country,:active,:image,:place_list,:tag)
     end
 
     def admin_user

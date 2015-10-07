@@ -26,7 +26,7 @@
               <div class="data">
                 <p><%= image_tag("company.png") %>株式会社ジェーティービー</p>
                 <p><%= image_tag("job.png") %>編集、撮影</p>
-                <p><%= image_tag("place.png") %><%= post.country %></p>
+                <p><%= image_tag("place.png") %><%= render 'tags', tag_list: post.place_list %></p>
                 <p><%= image_tag("reword.png") %>30,000</p>
               </div>
               <div class="content">テキストテキストテキストテキストテキストテキストテキストテキ
