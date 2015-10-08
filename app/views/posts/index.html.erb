@@ -75,20 +75,21 @@
         </div>
         <% @posts.each do |post| %>
           <% if post.active=="false" %>
-            <div class="end-job">
-              <%= image_tag(post.image) %>
-              <div class="column-content">
-                <div class="column-title"><%= post.title %></div>
-                <div class="column-company">株式会社ジェーティービー</div>
-                <% if user_signed_in? %>
-                <% if current_user.role=="admin" %>
-                  <td ><%= link_to 'Edit', edit_post_path(post) %></td>
-                  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if post.category=="job" %>
+              <div class="end-job">
+                <%= image_tag(post.image) %>
+                <div class="column-content">
+                  <div class="column-title"><%= post.title %></div>
+                  <div class="column-company">株式会社ジェーティービー</div>
+                  <% if user_signed_in? %>
+                  <% if current_user.role=="admin" %>
+                    <td ><%= link_to 'Edit', edit_post_path(post) %></td>
+                    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <% end %>
                 <% end %>
-              <% end %>
+                </div>
               </div>
-              
-            </div>
+            <% end %>  
           <% end %>
         <% end %>  
       

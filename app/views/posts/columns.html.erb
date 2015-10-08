@@ -5,39 +5,42 @@
         <h2><%= image_tag("top.png") %>募集中のシゴト</h2>
       </div>
       <% @columns.each do |column| %>
-        <% if column.active=="true" %>
-          <% if column.category=="column" %>
-            <div class="active-job">
-              <%= image_tag(column.image) %>
-              <div class="title">
-                <div><p><%= column.title%></p></div>
-              </div>
-              <div class="data">
-                <p><%= image_tag("company.png") %>株式会社ジェーティービー</p>
-                <p><%= image_tag("job.png") %>編集、撮影</p>
-                <p><%= image_tag("place.png") %>
-
-                <% column.place_list.each do |tag| %>
-                  <span class="label label-primary"><%= link_to tag, columns_path(tag: tag) %></span>
-                <% end %>
-
-                </p>
-                <p><%= image_tag("reword.png") %>30,000</p>
-              </div>
-              <div class="content">テキストテキストテキストテキストテキストテキストテキストテキ
-              ストテキストテキストテキストテキスト</div>
-              <% if user_signed_in? %>
-                <% if current_user.role=="admin" %>
-                  <td><%= link_to 'Edit', edit_post_path(column) %></td>
-                  <td><%= link_to 'Destroy', column, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                <% end %>
-              <% end %>
+        <% if column.category=="column" %>
+          <div class="active-job">
+            <%= image_tag(column.image) %>
+            <div class="title">
+              <div><p><%= column.title%></p></div>
             </div>
-          <% end %>
+            <div class="data">
+              <p><%= image_tag("company.png") %>株式会社ジェーティービー</p>
+              <p><%= image_tag("job.png") %>
+
+              <% column.job_list.each do |tag| %>
+                <span class="label label-primary"><%= link_to tag, columns_path(tag: tag) %></span>
+              <% end %>
+              
+              </p>
+              <p><%= image_tag("place.png") %>
+
+              <% column.place_list.each do |tag| %>
+                <span class="label label-primary"><%= link_to tag, columns_path(tag: tag) %></span>
+              <% end %>
+
+              </p>
+              <p><%= image_tag("reword.png") %>30,000</p>
+            </div>
+            <div class="content">テキストテキストテキストテキストテキストテキストテキストテキ
+            ストテキストテキストテキストテキスト</div>
+            <% if user_signed_in? %>
+              <% if current_user.role=="admin" %>
+                <td><%= link_to 'Edit', edit_post_path(column) %></td>
+                <td><%= link_to 'Destroy', column, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
     </div>
-
 
 
 
