@@ -41,12 +41,6 @@
         <% end %>
       <% end %>
     </div>
+<%= will_paginate @columns %>
 
-
-
-<% @columns.each do |column| %>
-	<% if column.category=="column" %>
-		<%= column.title %>
-	<% end %>
-<% end %>
 <%= stylesheet_link_tag "inside/columns" %>

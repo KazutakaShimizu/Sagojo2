@@ -18,19 +18,19 @@ class PostsController < ApplicationController
 
   def jobs
     @jobs= if 
-              params[:tag].present? 
-                Post.tagged_with(params[:tag])
-              else
-                Post.all.includes(:tags)
-            end
+           params[:tag].present? 
+              Post.tagged_with(params[:tag]).page(params[:page]).order(created_at: :desc)
+           else
+              Post.where(category: 'job').includes(:tags).page(params[:page]).order(created_at: :desc)
+           end
   end
 
   def columns
     @columns= if 
               params[:tag].present? 
-                Post.tagged_with(params[:tag])
+                Post.tagged_with(params[:tag]).page(params[:page]).order(created_at: :desc)
               else
-                Post.all.includes(:tags)
+                Post.where(category: 'column').includes(:tags).page(params[:page]).order(created_at: :desc)
               end
     
   end

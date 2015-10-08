@@ -1,5 +1,44 @@
-<% @jobs.each do |job| %>
-	<% if job.category=="job" %>
-		<%= job.title %>
-	<% end %>
-<% end %>
+<div class="main-wrapper">
+  <div class="main">
+    <div class="post-columns">
+      <div class="aj-copy">
+        <h2><%= image_tag("top.png") %>募集中のシゴト</h2>
+      </div>
+      <% @jobs.each do |job| %>
+        <% if job.category=="job" %>
+          <div class="active-job">
+            <%= image_tag(job.image) %>
+            <div class="title">
+              <div><p><%= job.title%></p></div>
+            </div>
+            <div class="data">
+              <p><%= image_tag("company.png") %>株式会社ジェーティービー</p>
+              <p><%= image_tag("job.png") %>
+
+              <% job.job_list.each do |tag| %>
+                <span class="label label-primary"><%= link_to tag, jobs_path(tag: tag) %></span>
+              <% end %>
+              
+              </p>
+              <p><%= image_tag("place.png") %>
+
+              <% job.place_list.each do |tag| %>
+                <span class="label label-primary"><%= link_to tag, jobs_path(tag: tag) %></span>
+              <% end %>
+
+              </p>
+              <p><%= image_tag("reword.png") %>30,000</p>
+            </div>
+            <div class="content">テキストテキストテキストテキストテキストテキストテキストテキ
+            ストテキストテキストテキストテキスト</div>
+            <% if user_signed_in? %>
+              <% if current_user.role=="admin" %>
+                <td><%= link_to 'Edit', edit_post_path(job) %></td>
+                <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+<%= will_paginate @jobs %>
