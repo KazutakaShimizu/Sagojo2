@@ -7,9 +7,9 @@ class PostsController < ApplicationController
   def index
     @posts = if 
               params[:tag].present? 
-                Post.tagged_with(params[:tag])
+                Post.tagged_with(params[:tag]).order(created_at: :desc)
               else
-                Post.all.includes(:tags)
+                Post.all.includes(:tags).order(created_at: :desc)
               end
 
     @users=User.all
@@ -19,20 +19,19 @@ class PostsController < ApplicationController
   def jobs
     @jobs= if 
            params[:tag].present? 
-              Post.tagged_with(params[:tag]).page(params[:page]).order(created_at: :desc)
+              Post.where(category: 'job').where(active: 'true').tagged_with(params[:tag]).page(params[:page]).order(created_at: :desc)
            else
-              Post.where(category: 'job').includes(:tags).page(params[:page]).order(created_at: :desc)
+              Post.where(category: 'job').where(active: 'true').includes(:tags).page(params[:page]).order(created_at: :desc)
            end
   end
 
   def columns
     @columns= if 
               params[:tag].present? 
-                Post.tagged_with(params[:tag]).page(params[:page]).order(created_at: :desc)
+                Post.where(category: 'column').tagged_with(params[:tag]).page(params[:page]).order(created_at: :desc)
               else
                 Post.where(category: 'column').includes(:tags).page(params[:page]).order(created_at: :desc)
               end
-    
   end
 
   # GET /posts/1

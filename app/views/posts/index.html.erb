@@ -21,7 +21,7 @@
             <div class="active-job">
               <%= image_tag(post.image) %>
               <div class="title">
-                <div><p><%= post.title%></p></div>
+                <div><%= link_to post_path(post) do %><p><%= post.title%></p><% end %></div>
               </div>
               <div class="data">
                 <p><%= image_tag("company.png") %>株式会社ジェーティービー</p>

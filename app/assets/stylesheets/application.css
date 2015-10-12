@@ -138,6 +138,7 @@ footer{
 	height: 400px;
 	background: black;
 	color: white;
+	overflow: hidden;
 
 }
 
